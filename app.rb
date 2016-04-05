@@ -1,7 +1,20 @@
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
+require 'sqlite3'
 
+configure do
+  @db = SQLite3::Database.new('./database/Barbershop.sqlite')
+  @db.execute 'CREATE TABLE IF NOT EXISTS "users" 
+  (
+    "id" INTEGER PRIMARY KEY  NOT NULL ,
+    "username" VARCHAR NOT NULL  DEFAULT (null) ,
+    "phone" VARCHAR OT NULL ,
+    "datestamp" VARCHAR NOT NULL ,
+    "barber" VARCHAR NOT NULL ,
+    "color" VARCHAR NOT NULL 
+  )'
+end
 
 get '/' do
 	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School</a>"			
