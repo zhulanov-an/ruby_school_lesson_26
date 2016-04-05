@@ -4,7 +4,7 @@ require 'sinatra/reloader'
 require 'sqlite3'
 
 configure do
-  @db = SQLite3::Database.new('./database/Barbershop.sqlite')
+  @db = SQLite3::Database.new('./database/barbershop.sqlite')
   @db.execute 'CREATE TABLE IF NOT EXISTS "users" 
   (
     "id" INTEGER PRIMARY KEY  NOT NULL ,
@@ -14,6 +14,7 @@ configure do
     "barber" VARCHAR NOT NULL ,
     "color" VARCHAR NOT NULL 
   )'
+  @db.close
 end
 
 get '/' do
